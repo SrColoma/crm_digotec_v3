@@ -1,6 +1,8 @@
 import 'package:crm_digotec_v3/Pages/CampaniasPage.dart';
 import 'package:crm_digotec_v3/Pages/DashboardPage.dart';
+import 'package:crm_digotec_v3/Pages/DetallesPage.dart';
 import 'package:crm_digotec_v3/Pages/OportunidadesPage.dart';
+import 'package:crm_digotec_v3/Pages/ProductosPage.dart';
 import 'package:crm_digotec_v3/Pages/ProspectosPage.dart';
 import 'package:crm_digotec_v3/Pages/TareasPage.dart';
 import 'package:crm_digotec_v3/customDrawer.dart';
@@ -31,6 +33,8 @@ class MainApp extends StatelessWidget {
         ProspectosPage.routeName: (context) => const ProspectosPage(),
         OportunidadesPage.routeName: (context) => const OportunidadesPage(),
         TareasPage.routeName: (context) => const TareasPage(),
+        // DetallesPage.routeName: (context) => const DetallesPage(),
+        ProductosPage.routeName: (context) => const ProductosPage(),
       },
     );
   }

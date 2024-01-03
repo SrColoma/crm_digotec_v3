@@ -1,4 +1,7 @@
 import 'package:crm_digotec_v3/CustomAppBar.dart';
+import 'package:crm_digotec_v3/Pages/DetallesPage.dart';
+import 'package:crm_digotec_v3/Pages/TrabajarPage.dart';
+import 'package:crm_digotec_v3/components/ActionTable.dart';
 import 'package:crm_digotec_v3/customDrawer.dart';
 import 'package:flutter/material.dart';
 
@@ -11,59 +14,35 @@ class ProspectosPage extends StatelessWidget {
   Widget build(BuildContext context) {
     // Define your DataRows
 
-    final dataColums = const <DataColumn>[
-      DataColumn(
-        label: Text('Nombre de la Campaña'),
-      ),
-      DataColumn(
-        label: Text('Fecha de Inicio'),
-      ),
-      DataColumn(
-        label: Text('Fecha de Finalización'),
-      ),
-      DataColumn(
-        label: Text('Presupuesto'),
-      ),
-      DataColumn(
-        label: Text('Tipo'),
-      ),
-      DataColumn(
-        label: Text('Estado'),
-      ),
-    ];
-
-
-    final dataRows = <DataRow>[
-      DataRow(
-        cells: <DataCell>[
-          DataCell(Text('Campaña 1')),
-          DataCell(Text('01/01/2022')),
-          DataCell(Text('31/01/2022')),
-          DataCell(Text('1000')),
-          DataCell(Text('Tipo 1')),
-          DataCell(Text('Activo')),
-        ],
-      ),
-      DataRow(
-        cells: <DataCell>[
-          DataCell(Text('Campaña 2')),
-          DataCell(Text('02/02/2022')),
-          DataCell(Text('28/02/2022')),
-          DataCell(Text('2000')),
-          DataCell(Text('Tipo 2')),
-          DataCell(Text('Inactivo')),
-        ],
-      ),
-      DataRow(
-        cells: <DataCell>[
-          DataCell(Text('Campaña 3')),
-          DataCell(Text('03/03/2022')),
-          DataCell(Text('31/03/2022')),
-          DataCell(Text('3000')),
-          DataCell(Text('Tipo 3')),
-          DataCell(Text('Activo')),
-        ],
-      ),
+    final datos = [
+      {
+        'Nombre Completo': 'Alejandro',
+        'Compania': 'Digotec',
+        'Email': 'unemail@mailcom',
+        'Telefono': '123456789',
+        'Estado': 'Nuevo'
+      },
+      {
+        'Nombre Completo': 'Juan',
+        'Compania': 'Digotec',
+        'Email': 'unemail@mailcom',
+        'Telefono': '123456789',
+        'Estado': 'Nuevo'
+      },
+      {
+        'Nombre Completo': 'Pedro',
+        'Compania': 'Digotec',
+        'Email': 'unemail@mailcom',
+        'Telefono': '123456789',
+        'Estado': 'Nuevo'
+      },
+      {
+        'Nombre Completo': 'Maria',
+        'Compania': 'Digotec',
+        'Email': 'unemail@mailcom',
+        'Telefono': '123456789',
+        'Estado': 'Nuevo'
+      },
     ];
 
     return Scaffold(
@@ -95,18 +74,35 @@ class ProspectosPage extends StatelessWidget {
                           ],
                         ),
                         SizedBox(height: 20), 
-                        SingleChildScrollView(
-                          child: DataTable(
-                            decoration: BoxDecoration(
-                              border: Border.all(
-                                color: Colors.grey,
+                        ActionTable(
+                          json: datos,
+                          onFirstColumnTap: (value) {
+                            // print(value);
+                            Navigator.of(context).pushReplacement(
+                              MaterialPageRoute(
+                                builder: (context) => DetallesPage(prospecto: value),
                               ),
-                              borderRadius: BorderRadius.circular(15),
-                            ),
-                            columns: dataColums,
-                            rows: dataRows,
-                          ),
-                        ),
+                            );
+                          },
+                          actions: [
+                            {
+                              'nombre': 'Trabajar',
+                              'accion': (item) {
+                                Navigator.of(context).pushReplacement(
+                                  MaterialPageRoute(
+                                    builder: (context) => TrabajarPage(prospecto: item),
+                                  ),
+                                );
+                              },
+                            },
+                            {
+                              'nombre': 'inabilitar',
+                              'accion': (item) {
+                                print('inabilitar $item');
+                              },
+                            },
+                          ],
+                        )
                     
                       ]
                     ),

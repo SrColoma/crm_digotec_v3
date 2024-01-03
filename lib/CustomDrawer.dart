@@ -39,6 +39,8 @@ class CustomDrawer extends StatelessWidget {
             title: Text('Prospectos'),
             onTap: () {
               Navigator.of(context).pushReplacementNamed('/prospectos');
+              // Navigator.of(context).popAndPushNamed('/prospectos');
+              // Navigator.of(context).pushNamedAndRemoveUntil('/prospectos', (Route<dynamic> route) => false);
             },
           ),
           ListTile(
@@ -53,6 +55,13 @@ class CustomDrawer extends StatelessWidget {
             title: Text('Tareas'),
             onTap: () {
               Navigator.of(context).pushReplacementNamed('/tareas');
+            },
+          ),
+          ListTile(
+            leading: Icon(Icons.shopping_cart),
+            title: Text('Productos'),
+            onTap: () {
+              Navigator.of(context).pushReplacementNamed('/productos');
             },
           ),
         ],

@@ -11,7 +11,7 @@ class CustomAppbar extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(15),
       ),
-      automaticallyImplyLeading: false,
+      // automaticallyImplyLeading: false,
       backgroundColor: Colors.grey[200],
       title: Text(title), // Modify this
       actions: [
@@ -26,6 +26,34 @@ class CustomAppbar extends StatelessWidget {
         IconButton(
           icon: Icon(Icons.settings),
           onPressed: () {},
+        ),
+        IconButton(
+          icon: CircleAvatar(
+            backgroundImage: NetworkImage('https://avatar.iran.liara.run/public/boy?username=Ash'),
+          ),
+          onPressed: () {},
+        ),
+        PopupMenuButton<String>(
+          onSelected: (value) {
+            switch (value) {
+              case 'Cerrar sesión':
+                // Handle log out
+                break;
+              case 'Ver perfil':
+                // Handle view profile
+                break;
+            }
+          },
+          itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
+            const PopupMenuItem<String>(
+              value: 'Cerrar sesión',
+              child: Text('Cerrar sesión'),
+            ),
+            const PopupMenuItem<String>(
+              value: 'Ver perfil',
+              child: Text('Ver perfil'),
+            ),
+          ],
         ),
       ],
     );

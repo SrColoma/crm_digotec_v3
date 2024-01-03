@@ -2,15 +2,12 @@ import 'package:crm_digotec_v3/CustomAppBar.dart';
 import 'package:crm_digotec_v3/customDrawer.dart';
 import 'package:flutter/material.dart';
 
-class DashBoardPage extends StatelessWidget {
-  static const String routeName = '/';
-  const DashBoardPage({super.key});
-
+class ProductosPage extends StatelessWidget {
+  static const String routeName = '/productos';
+  const ProductosPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    // Define your DataRows
-
     return Scaffold(
       body: Row(
         children:[
@@ -21,7 +18,7 @@ class DashBoardPage extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  CustomAppbar( title: 'DashBoard'),
+                  CustomAppbar( title: 'Productos'),
                   Padding(  
                     padding: const EdgeInsets.all(8.0),
                     child: Column(
