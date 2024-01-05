@@ -31,19 +31,19 @@ class TrabajarPage extends StatelessWidget {
                           Card(
                             child: ListTile(
                               title: Text('Nombre Completo'),
-                              subtitle: Text('${prospecto['Nombre Completo']}'),
+                              subtitle: Text('${prospecto['nombre']}'),
                             ),
                           ),
                           Card(
                             child: ListTile(
                               title: Text('Email'),
-                              subtitle: Text('${prospecto['Email']}'),
+                              subtitle: Text('${prospecto['email']}'),
                             ),
                           ),
                           Card(
                             child: ListTile(
                               title: Text('Telefono'),
-                              subtitle: Text('${prospecto['Telefono']}'),
+                              subtitle: Text('${prospecto['telefono']}'),
                             ),
                           ),
                           Padding(
@@ -157,21 +157,79 @@ class TrabajarPage extends StatelessWidget {
                               children: [
                                 ElevatedButton(
                                   onPressed: () {
-                                    // Handle button press
+                                    showDialog(
+                                      context: context,
+                                      builder: (context) => AlertDialog(
+                                        title: Text('se marcara como contactado por primera vez'),
+                                        actions: [
+                                          TextButton(
+                                            onPressed: () {
+                                              // Handle button press
+                                            },
+                                            child: Text('Si'),
+                                          ),
+                                          TextButton(
+                                            onPressed: () {
+                                              Navigator.of(context).pop();
+                                            },
+                                            child: Text('No'),
+                                          ),
+                                        ],
+                                      ),
+                                    );
                                   },
                                   child: Text('Reagendar'),
                                 ),
                                 SizedBox(width: 20),
                                 ElevatedButton(
                                   onPressed: () {
-                                    // Handle button press
+                                    showDialog(
+                                      context: context,
+                                      builder: (context) => AlertDialog(
+                                        title: Text('¿Estas seguro que deseas eliminar el prospecto?'),
+                                        actions: [
+                                          TextButton(
+                                            onPressed: () {
+                                              // Handle button press
+                                            },
+                                            child: Text('Si'),
+                                          ),
+                                          TextButton(
+                                            onPressed: () {
+                                              Navigator.of(context).pop();
+                                            },
+                                            child: Text('No'),
+                                          ),
+                                        ],
+                                      ),
+                                    );
                                   },
                                   child: Text('Elminar'),
                                 ),
                                 SizedBox(width: 20),
                                 ElevatedButton(
                                   onPressed: () {
-                                    // Handle button press
+                                    // show dialog de seguro que realizastes las actividades para convertir al prospecto
+                                    showDialog(
+                                      context: context,
+                                      builder: (context) => AlertDialog(
+                                        title: Text('¿Estas seguro de que realizastes las actividades?'),
+                                        actions: [
+                                          TextButton(
+                                            onPressed: () {
+                                              // Handle button press
+                                            },
+                                            child: Text('Si'),
+                                          ),
+                                          TextButton(
+                                            onPressed: () {
+                                              Navigator.of(context).pop();
+                                            },
+                                            child: Text('No'),
+                                          ),
+                                        ],
+                                      ),
+                                    );
                                   },
                                   child: Text('Convertir a oportunidad'),
                                 ),

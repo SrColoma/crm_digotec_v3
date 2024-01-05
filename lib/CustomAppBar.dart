@@ -37,22 +37,23 @@ class CustomAppbar extends StatelessWidget {
           onSelected: (value) {
             switch (value) {
               case 'Cerrar sesión':
-                // Handle log out
+                Navigator.of(context).pushReplacementNamed('/');
                 break;
-              case 'Ver perfil':
-                // Handle view profile
-                break;
+              // case 'Ver perfil':
+              //   // Handle view profile
+              //   break;
             }
           },
           itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
             const PopupMenuItem<String>(
               value: 'Cerrar sesión',
               child: Text('Cerrar sesión'),
+
             ),
-            const PopupMenuItem<String>(
-              value: 'Ver perfil',
-              child: Text('Ver perfil'),
-            ),
+            // const PopupMenuItem<String>(
+            //   value: 'Ver perfil',
+            //   child: Text('Ver perfil'),
+            // ),
           ],
         ),
       ],

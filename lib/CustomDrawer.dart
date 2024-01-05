@@ -19,14 +19,14 @@ class CustomDrawer extends StatelessWidget {
               subtitle: Text('Versión 1.5.0'),
             ),
           ),
-          ListTile(
-            leading: Icon(Icons.dashboard),
-            title: Text('Dashboard'),
-            onTap: () {
-              Navigator.of(context).pushReplacementNamed('/');
+          // ListTile(
+          //   leading: Icon(Icons.dashboard),
+          //   title: Text('Dashboard'),
+          //   onTap: () {
+          //     Navigator.of(context).pushReplacementNamed('/dashboard');
 
-            },
-          ),
+          //   },
+          // ),
           ListTile(
             leading: Icon(Icons.campaign),
             title: Text('Campañas'),
@@ -50,20 +50,20 @@ class CustomDrawer extends StatelessWidget {
               Navigator.of(context).pushReplacementNamed('/oportunidades');
             },
           ),
-          ListTile(
-            leading: Icon(Icons.assignment),
-            title: Text('Tareas'),
-            onTap: () {
-              Navigator.of(context).pushReplacementNamed('/tareas');
-            },
-          ),
-          ListTile(
-            leading: Icon(Icons.shopping_cart),
-            title: Text('Productos'),
-            onTap: () {
-              Navigator.of(context).pushReplacementNamed('/productos');
-            },
-          ),
+          // ListTile(
+          //   leading: Icon(Icons.assignment),
+          //   title: Text('Tareas'),
+          //   onTap: () {
+          //     Navigator.of(context).pushReplacementNamed('/tareas');
+          //   },
+          // ),
+          // ListTile(
+          //   leading: Icon(Icons.shopping_cart),
+          //   title: Text('Productos'),
+          //   onTap: () {
+          //     Navigator.of(context).pushReplacementNamed('/productos');
+          //   },
+          // ),
         ],
       ),
     );

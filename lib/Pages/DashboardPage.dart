@@ -3,7 +3,7 @@ import 'package:crm_digotec_v3/customDrawer.dart';
 import 'package:flutter/material.dart';
 
 class DashBoardPage extends StatelessWidget {
-  static const String routeName = '/';
+  static const String routeName = '/dashboard';
   const DashBoardPage({super.key});
 
 

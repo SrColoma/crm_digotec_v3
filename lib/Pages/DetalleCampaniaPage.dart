@@ -1,11 +1,12 @@
 import 'package:crm_digotec_v3/CustomAppBar.dart';
+import 'package:crm_digotec_v3/CustomDrawer.dart';
 import 'package:crm_digotec_v3/components/ActionTable.dart';
-import 'package:crm_digotec_v3/customDrawer.dart';
 import 'package:flutter/material.dart';
 
-class TareasPage extends StatelessWidget {
-  static const String routeName = '/tareas';
-  const TareasPage({super.key});
+class DetalleCampaniaPage extends StatelessWidget {
+    final Map<String, dynamic> campania;
+
+  DetalleCampaniaPage({Key? key, required this.campania}) : super(key: key);
 
 
   @override
@@ -52,38 +53,38 @@ class TareasPage extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  CustomAppbar( title: 'Tareas'),
+                  CustomAppbar( title: 'Detalle de ${campania['Nombre de la Campaña']}' ),
                   Padding(  
                     padding: const EdgeInsets.all(8.0),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
                         SizedBox(height: 20), 
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            ElevatedButton(
-                              onPressed: () {
-                                // Handle button press
-                              },
-                              child: Text('Nueva tarea'),
-                            ),
-                          ],
-                        ),
+                        // Row(
+                        //   mainAxisAlignment: MainAxisAlignment.end,
+                        //   children: [
+                        //     ElevatedButton(
+                        //       onPressed: () {
+                        //         // Handle button press
+                        //       },
+                        //       child: Text('Nueva tarea'),
+                        //     ),
+                        //   ],
+                        // ),
                         SizedBox(height: 20), 
                         ActionTable(
                           datos: datos,
                           onFirstColumnTap: (value) {
                           },
                           actions: [
+                            // {
+                            //   'nombre': 'Eliminar',
+                            //   'accion': (item) {
+                            //     print('Eliminar $item');
+                            //   },
+                            // },
                             {
-                              'nombre': 'Eliminar',
-                              'accion': (item) {
-                                print('Eliminar $item');
-                              },
-                            },
-                            {
-                              'nombre': 'Acción 2',
+                              'nombre': 'Asignar',
                               'accion': (item) {
                                 print('Acción 2 $item');
                               },

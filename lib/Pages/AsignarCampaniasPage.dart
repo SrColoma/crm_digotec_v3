@@ -1,17 +1,14 @@
 import 'package:crm_digotec_v3/CustomAppBar.dart';
-import 'package:crm_digotec_v3/Pages/SeguimientoPage.dart';
+import 'package:crm_digotec_v3/CustomDrawer.dart';
 import 'package:crm_digotec_v3/components/ActionTable.dart';
-import 'package:crm_digotec_v3/customDrawer.dart';
 import 'package:crm_digotec_v3/utils/ApiClient.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class OportunidadesPage extends StatelessWidget {
-  static const String routeName = '/oportunidades';
-  static const String endpoint = '/venta/get_oportunidades';
-  const OportunidadesPage({super.key});
-
-
+class AsignarCampaniaPage extends StatelessWidget {
+  static const String endpoint = '/venta/get_personas';
+  final Map<String, dynamic> campania;
+  const AsignarCampaniaPage({super.key, required this.campania});
   @override
   Widget build(BuildContext context) {
     // Get the ApiClient from the context
@@ -19,39 +16,6 @@ class OportunidadesPage extends StatelessWidget {
 
     // Fetch the data
     final datosFuture = apiClient.get(endpoint);
-
-
-    // final datos = [
-    //   {
-    //     'Nombre Completo': 'Alejandro',
-    //     'Compania': 'Digotec',
-    //     'Email': 'unemail@mailcom',
-    //     'Telefono': '123456789',
-    //     'Estado': 'Nuevo'
-    //   },
-    //   {
-    //     'Nombre Completo': 'Juan',
-    //     'Compania': 'Digotec',
-    //     'Email': 'unemail@mailcom',
-    //     'Telefono': '123456789',
-    //     'Estado': 'Nuevo'
-    //   },
-    //   {
-    //     'Nombre Completo': 'Pedro',
-    //     'Compania': 'Digotec',
-    //     'Email': 'unemail@mailcom',
-    //     'Telefono': '123456789',
-    //     'Estado': 'Nuevo'
-    //   },
-    //   {
-    //     'Nombre Completo': 'Maria',
-    //     'Compania': 'Digotec',
-    //     'Email': 'unemail@mailcom',
-    //     'Telefono': '123456789',
-    //     'Estado': 'Nuevo'
-    //   },
-    // ];
-    
 
     return FutureBuilder(
       future: datosFuture,
@@ -73,7 +37,7 @@ class OportunidadesPage extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        CustomAppbar( title: 'Oportunidades'),
+                        CustomAppbar( title: 'Asignar ${campania['Nombre de la Campaña']}' ),
                         Padding(  
                           padding: const EdgeInsets.all(8.0),
                           child: Column(
@@ -87,7 +51,7 @@ class OportunidadesPage extends StatelessWidget {
                               //       onPressed: () {
                               //         // Handle button press
                               //       },
-                              //       child: Text('Nueva Oportunidad'),
+                              //       child: Text('Nueva campaña'),
                               //     ),
                               //   ],
                               // ),
@@ -95,29 +59,41 @@ class OportunidadesPage extends StatelessWidget {
                               ActionTable(
                                 datos: datos,
                                 onFirstColumnTap: (value) {
-                                  print(value);
+                                  // Navigator.push(
+                                  //   context,
+                                  //   MaterialPageRoute(
+                                  //     builder: (context) => DetalleCampaniaPage(campania: 'Campaña 1'),
+                                  //   ),
+                                  // );
                                 },
                                 actions: [
+                                  // {
+                                  //   'nombre': 'Eliminar',
+                                  //   'accion': (item) {
+                                  //     print('Eliminar $item');
+                                  //   },
+                                  // },
                                   {
-                                    'nombre': 'Seguimiento',
+                                    'nombre': 'Asignar',
                                     'accion': (item) {
-                                      Navigator.of(context).pushReplacement(
-                                        MaterialPageRoute(
-                                          builder: (context) => SeguimientoPage(prospecto: item),
+                                      // se asignara la campaña campania['Nombre de la Campaña'] a item['Nombre Completo']
+                                      showDialog(
+                                        context: context,
+                                        builder: (BuildContext context) => AlertDialog(
+                                          title: Text('Asignar ${campania['nombre']}' ),
+                                          content: Text('¿Desea asignar la campaña ${campania['nombre']} a ${item['nombre']}?'),
+                                          actions: [
+                                            TextButton(
+                                              onPressed: () => Navigator.pop(context, 'Cancel'),
+                                              child: const Text('Cancelar'),
+                                            ),
+                                            TextButton(
+                                              onPressed: () => Navigator.pop(context, 'OK'),
+                                              child: const Text('OK'),
+                                            ),
+                                          ],
                                         ),
                                       );
-                                    },
-                                  },
-                                  {
-                                    'nombre': 'Mandar a prospecto',
-                                    'accion': (item) {
-                                      print('Acción 2 $item');
-                                    },
-                                  },
-                                  {
-                                    'nombre': 'Eliminar',
-                                    'accion': (item) {
-                                      print('Acción 2 $item');
                                     },
                                   },
                                 ],
@@ -134,12 +110,8 @@ class OportunidadesPage extends StatelessWidget {
               ]
             ),
           );
-          // Rest of your code...
         }
-      },
+      }
     );
-
-
-
   }
 }

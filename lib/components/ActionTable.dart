@@ -3,21 +3,29 @@ import 'package:crm_digotec_v3/customDrawer.dart';
 import 'package:flutter/material.dart';
 
 class ActionTable extends StatelessWidget {
-  final List<Map<String, dynamic>> json;
+  final List<Map<String, dynamic>> datos;
   final Function(Map<String, dynamic>) onFirstColumnTap;
   final List<Map<String, dynamic>> actions;
+  final String firstColumn;
+  final List<String> noShow;
 
-  ActionTable({Key? key, required this.json, required this.onFirstColumnTap, required this.actions}) : super(key: key);
+  ActionTable({Key? key, required this.datos, required this.onFirstColumnTap, required this.actions, this.firstColumn = 'nombre', this.noShow = const []}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     // Convert JSON to DataColumn and DataRow
-    final columns = [...json[0].keys.map((key) => DataColumn(label: Text(key))).toList(), DataColumn(label: Text('Acciones'))];
-    final rows = json.map((item) {
-      final cells = item.entries.map((entry) {
+    var columns = datos[0].keys.toList();
+    columns = columns.where((column) => !noShow.contains(column)).toList();
+    if (columns.contains(firstColumn)) {
+      columns.remove(firstColumn);
+      columns.insert(0, firstColumn);
+    }
+    final dataColumns = [...columns.map((key) => DataColumn(label: Text(key))).toList(), DataColumn(label: Text('Acciones'))];
+    final rows = datos.map((item) {
+      final cells = columns.map((column) {
         return {
-          'value': entry.value,
-          'cell': DataCell(Text(entry.value.toString())),
+          'value': item[column],
+          'cell': DataCell(Text(item[column].toString())),
         };
       }).toList();
       cells.add({
@@ -63,9 +71,11 @@ class ActionTable extends StatelessWidget {
           ),
           borderRadius: BorderRadius.circular(15),
         ),
-        columns: columns,
+        columns: dataColumns,
         rows: rows,
+
       ),
     );
   }
 }
+
